@@ -1,0 +1,66 @@
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+html {
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+body {
+	margin: 0 auto;
+	overflow-x: hidden;
+	line-height: 1;
+	-webkit-overflow-scrolling: touch; /*滚动条卡顿*/
+	-webkit-font-smoothing: antialiased; /*字体抗锯齿渲染*/
+}
+input, textarea, select{
+	-webkit-appearance:none; /*ios 下输入框默认内阴影*/
+	appearance: none; 
+	outline:none; /*去掉fouce时边框高亮效果*/
+	background: unset; /*去掉默认背景*/
+}
+*:not(input, select, textArea) {
+  -webkit-user-select: none; /* 禁止选中文本内容 */
+}
+em, i {
+	font-style: normal;
+}
+a {
+	text-decoration: none;
+}
+/* 移动端点击a链接出现蓝色背景问题解决 */
+a:link, a:active, a:visited, a:hover {
+	background: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent;
+}
+img:not([src]), img[src=""] {
+	opacity: 0;
+}
+ul, ol {
+	list-style: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* 弹性布局 */
+.flex {
+  display: flex;
+  box-sizing: border-box;
+}
+.flex-item {
+  flex: 1;
+}
+.flex-center {
+  align-items: center;
+  justify-content: space-between;
+}
+/* 定制主题 */
+:root {
+	--my-border-color: #4E6EF2;
+	--van-tabs-bottom-bar-color: #4E6EF2;
+	--van-button-primary-background-color: #4E6EF2;
+	--van-button-primary-border-color: #4E6EF2;
+}
