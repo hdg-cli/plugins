@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Toast, Dialog } from 'vant'
 import { host } from '@/constant'
+import store from '@/store'
 import { getToken } from '@/utils/auth'
 
 // 不知为何，此处使用 import router from "@/router" 无效
