@@ -57,7 +57,7 @@ export function deleteReq2(id: number) {
  * Mocking client-server processing
  */
 const _user = {
-	user: {avatar: null, id: 996, name: 'gimc'},
+	user: {avatar: null, id: 996, name: 'hdg'},
 	roleList: ['技术'],
 	privilegeList: [],
 	token: '1234567890'
