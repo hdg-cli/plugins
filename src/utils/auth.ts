@@ -2,7 +2,7 @@ import md5 from 'js-md5'
 const TokenKey: string = md5('hq_token')
 
 console.log('token: ', TokenKey)
-export function getToken ():string {
+export function getToken ():any {
     return localStorage.getItem(TokenKey)
 }
 

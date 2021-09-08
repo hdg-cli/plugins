@@ -1,22 +1,21 @@
-import router from '@/router'
-import store from '@/store'
-import { getToken } from '@/utils/auth'
+import router from './router'
+import { getToken } from './utils/auth'
 
-console.log(router.getRoutes())
 // 路由守卫
-router.beforeEach((to, from, next) => {
-	// 获取本地存储的token
+router.beforeEach((to: any, from: any, next: any) => {
 	if(!to.name) {
 		next('/404')
 	} else {
-		if(getToken()) {
-			next()
-		} else {
-			if(to.name === 'Login' || to.name === '404') {
+		// 是否需要登录
+		if(to.meta.requireAuth) {
+			// 获取本地存储的 token
+			if(getToken()) {
 				next()
 			} else {
-				 next('/login')
+				next('/login')
 			}
+		} else {
+			next()
 		}
 	}
 })

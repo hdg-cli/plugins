@@ -1,9 +1,9 @@
 import axios from 'axios'
 import { Toast, Dialog } from 'vant'
 import { host } from '@/constant'
-import router from '@/router'
-import store from '@/store'
 import { getToken } from '@/utils/auth'
+
+// 不知为何，此处使用 import router from "@/router" 无效
 
 // 创建axios实例
 const service = axios.create({
@@ -14,8 +14,10 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   // Do something before request is sent
-  if (store.state.user.token) {
-    config.headers['X-Token'] = getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+	let token = getToken()
+	console.log('token: ', token)
+  if (token) {
+    config.headers['X-Token'] = token // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
   }
   return config
 }, error => {
@@ -36,8 +38,8 @@ service.interceptors.response.use(
 	 if (res.msg !== 'success' && (!fileType.includes(res.type))) {
 	   // 登录过期拦截
 	   if(response.data.code === 403) {
-	     if(router.history.current.path != "/") {
-	       if(router.history.current.path == "/login") {
+	     if(window.location.hash != "#/") {
+	       if(window.location.hash == "#/login") {
 	         return Promise.reject(response.data)
 	       }
 				 Dialog.confirm({

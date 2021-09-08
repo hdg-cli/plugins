@@ -31,6 +31,9 @@
 	import Video from '@/components/Video.vue'
 	import Image from '@/components/Image.vue'
 	import File from '@/components/File.vue'
+	import {
+		getReq
+	} from '@/api/login'
 	export default defineComponent({
 	  name: 'Material',
 	  components: {
@@ -44,15 +47,13 @@
 			File
 	  },
 		setup() {
-			const list = ref([])
+			const list = ref([1, 2, 3])
 			const loading = ref(false)
 			const finished = ref(false)
 			const refreshing = ref(false)
 			const searchVal = ref('')
 			const active = ref(0)
 			const options = ref([{label: '视频', value: 'video'}, {label: '图片', value: 'image'}, {label: '文件', value: 'file'}])
-			
-			
 			
 			const onLoad = () => {
 				setTimeout(() => {
@@ -65,7 +66,7 @@
 						list.value.push(list.value.length + 1)
 					}
 					loading.value = false
-	
+					
 					if (list.value.length >= 40) {
 						finished.value = true
 					}
@@ -84,10 +85,10 @@
 			
 			
 			onMounted(() => {
-				
+				getReq({name: 22})
 			})
 			
-			const onSearch = (val) => {
+			const onSearch = (val: string) => {
 				searchVal.value = val
 				alert(val)
 			}

@@ -1,8 +1,8 @@
 const getters = {
-	token: state => state.user.token,
-	avatar: state => state.user.avatar,
-	name: state => state.user.name,
-	bindStatus: state => state.user.bindStatus
+	token: (state: any) => state.user.token,
+	avatar: (state: any) => state.user.avatar,
+	name: (state: any) => state.user.name,
+	bindStatus: (state: any) => state.user.bindStatus
 }
 
 export default getters

@@ -1,8 +1,8 @@
-import request from '@/utils/request'
+import request from './request'
 import qs from 'qs'
 
 // get 方法
-export function getReq(params) {
+export function getReq(params: any) {
 	return request({
 		url: '/material/tag/byGroup',
 		method: 'get',
@@ -11,7 +11,7 @@ export function getReq(params) {
 }
 
 // post 方法
-export function postReq(data) {
+export function postReq(data: any) {
 	return request({
 		url: '/api',
 		method: 'post',
@@ -20,12 +20,12 @@ export function postReq(data) {
 }
 
 // put 方法
-export function putReq(data) {
+export function putReq(data: any) {
 	return request({
 		url: '/api',
 		method: 'put',
 		params: data,
-		paramsSerializer: function(params) {
+		paramsSerializer: function(params: any) {
 			return qs.stringify(params, {arrayFormat: 'repeat'})
 		},
 		data
@@ -33,12 +33,12 @@ export function putReq(data) {
 }
 
 // delete 方法
-export function deleteReq(data) {
+export function deleteReq(data: any) {
 	return request({
 		url: '/api',
 		method: 'delete',
 		params: data,
-		paramsSerializer: function(params) {
+		paramsSerializer: function(params: any) {
 			return qs.stringify(params, {arrayFormat: 'repeat'})
 		},
 		data
@@ -46,7 +46,7 @@ export function deleteReq(data) {
 }
 
 // delete 方法
-export function deleteReq2(id) {
+export function deleteReq2(id: number) {
   return request({
     url: `/api/${id}`,
     method: 'delete'

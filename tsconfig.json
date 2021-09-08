@@ -1,14 +1,21 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
+    "target": "esnext", // 编译的目标是什么版本的
+    "module": "esnext", // 指定生成那个模块系统代码
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["esnext", "dom"]
+		"noImplicitAny": false,
+    "lib": ["esnext", "dom"],
+		"baseUrl": "./",
+		"paths": {
+			"@": ["src"],
+			"@/*": ["src/*"]
+		}
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+	"exclude": ["mode_modules"]
 }

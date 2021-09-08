@@ -1,7 +1,7 @@
 <template>
 	<div class="page">
 		<canvas class="canvas" id="qrcode" ref="qrDom"></canvas>
-		<p>{{$store.state.user.name}} 微信扫一扫登录</p>
+		<p>{{name}} 微信扫一扫登录</p>
 	</div>
 </template>
 <script lang="ts">
@@ -10,29 +10,30 @@
 	import {useStore} from 'vuex'
 	import {
 		getReq
-	} from '@/utils/api'
+	} from '@/api/login'
 	export default defineComponent({
 		name: 'Login',
 		setup() {
 			const url = ref('')
 			const qrDom = ref(null)
-			let user = ref({})
+			let name = ref('')
 			const store = useStore()
 			
 			onMounted(() => {
 				// 获取用户信息
 				store.dispatch('user/GetUserInfo')
-				getReq()
+				
 			})
 			
 			nextTick(() => {
 				getUrl()
+				getReq({name: 2})
 			})
 			
 			
 			
-			computed(() => {
-				// console.log('state:', store.state)
+			name = computed(() => {
+				return store.state.user.name
 			})
 			
 			const getUrl = () => {
@@ -40,9 +41,9 @@
 				qrcode(url)
 			}
 			
-			const qrcode = (url) =>{
+			const qrcode = (url: any) =>{
 				let oQrcode = document.getElementById('qrcode')
-				oQrcode.innerHTML = ''
+				oQrcode!.innerHTML = ''
 				QRCode.toCanvas(oQrcode, 
 					url.value,
 					 {
@@ -64,7 +65,7 @@
 			return {
 				url,
 				qrDom,
-				user
+				name
 			}
 		}
 	})

@@ -45,12 +45,12 @@
 		setup() {
 			const searchVal = ref('')
 			const active = ref(0)
-			const list = ref([])
+			const list = ref([1, 2, 3])
 			const loading = ref(false)
 			const finished = ref(false)
 			const refreshing = ref(false)
 			
-			const onSearch = (val) => {
+			const onSearch = (val: string) => {
 				searchVal.value = val
 				alert(val)
 			}
@@ -92,7 +92,6 @@
 				loading,
 				finished,
 				refreshing,
-				onLoad,
 				onRefresh
 			}
 		}

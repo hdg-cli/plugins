@@ -22,7 +22,7 @@
 
 <script lang="ts">
 	import { defineComponent, ref } from 'vue'
-	import { Col, Row, Image as VanImage, Button, Icon, Lazyload } from 'vant'
+	import { Col, Row, Image as VanImage, Button, Icon } from 'vant'
 	export default defineComponent({
 	  name: 'Video',
 		components: {
@@ -30,8 +30,7 @@
 			[Row.name]: Row,
 			[VanImage.name]: VanImage,
 			[Button.name]: Button,
-			[Icon.name]: Icon,
-			[Lazyload.name]: Lazyload
+			[Icon.name]: Icon
 		},
 		props: {
 			list: {

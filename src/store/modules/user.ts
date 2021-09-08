@@ -1,7 +1,8 @@
-import login from '@/api/login'
+import { getUserInfo } from '@/api/login'
+import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const state = () => ({
-	token: '',
+	token: getToken(),
 	name: '',
 	avatar: '',
 	bindStatus: false
@@ -10,13 +11,14 @@ const state = () => ({
 const getters = {}
 
 const actions = {
-	async GetUserInfo ({ state, commit }) {
-		const userInfo: any = await login.getUserInfo()
+	async GetUserInfo ({ state: any, commit }) {
+		const userInfo: any = await getUserInfo()
 		if(userInfo) {
 			commit('SET_BIND_STATUS', false)
 			commit('SET_TOKEN', userInfo.token)
 			commit('SET_NAME', userInfo.user.name)
 			commit('SET_AVATAR', userInfo.user.avatar)
+			setToken(userInfo.token)
 		}
 	},
 	LogOut({ commit }) {
@@ -25,25 +27,26 @@ const actions = {
 			commit('SET_TOKEN', '')
 			commit('SET_NAME', '')
 			commit('SET_AVATAR', '')
-			resolve()
+			removeToken()
+			resolve(1)
 		})
 	}
 }
 
 const mutations = {
-	SET_TOKEN (state, token) {
+	SET_TOKEN (state: any, token: string) {
 		state.token = token
 	},
 	
-	SET_NAME (state, name) {
+	SET_NAME (state: any, name: string) {
 		state.name = name
 	},
 	
-	SET_AVATAR (state, avatar) {
+	SET_AVATAR (state: any, avatar: string) {
 		state.avatar = avatar
 	},
 	
-	SET_BIND_STATUS (state, bindStatus) {
+	SET_BIND_STATUS (state: any, bindStatus: string) {
 		state.bindStatus = bindStatus
 	}
 }
