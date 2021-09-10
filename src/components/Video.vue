@@ -107,8 +107,8 @@
 		font-size: .32rem;
 	}
 	video {
-		width: 100vw;
-		height: 100vh;
+		width: 90vw;
+		height: 90vh;
 	}
 	
 </style>
