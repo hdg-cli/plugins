@@ -1,7 +1,7 @@
 <template>
 	<form class="search-form" action="/">
 	  <van-search
-	    v-model="searchVal"
+	    v-model.trim="searchVal"
 			left-icon="none"
 	    show-action
 	    placeholder="请输入搜索关键词"

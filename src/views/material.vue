@@ -110,7 +110,7 @@
 
 <style scoped>
 	.page {
-		padding-top: calc(36px + .3rem);
+		padding-top: calc(36px + .6rem);
 	}
 	:deep(.van-tab--active) {
 		font-weight: bold;
