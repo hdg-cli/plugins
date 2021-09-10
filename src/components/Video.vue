@@ -58,14 +58,14 @@
 			const showPlayer = () => {
 				show.value = !show.value
 				nextTick(() => {
-					const video = document.getElementById('video')
+					const video: any = document.getElementById('video')
 					video.play()
 				})
 			}
 			
 			const hidePlayer = () => {
 				nextTick(() => {
-					const video = document.getElementById('video')
+					const video: any = document.getElementById('video')
 					video.pause()
 				})
 			}
@@ -107,7 +107,8 @@
 		font-size: .32rem;
 	}
 	video {
-		width: 7.5rem;
-		max-height: 100%;
+		width: 100vw;
+		height: 100vh;
 	}
+	
 </style>

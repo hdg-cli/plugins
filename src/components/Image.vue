@@ -1,7 +1,7 @@
 <template>
 	<div class="water-fall">
 		<div class="water-fall-cell" v-for="item in list">
-			<img src="https://img.yzcdn.cn/vant/cat.jpeg" alt="加载失败" />
+			<img src="https://img.yzcdn.cn/vant/cat.jpeg" @click="preview('https://img.yzcdn.cn/vant/cat.jpeg')" alt="加载失败" />
 			<p class="cell-title">图片名称图片名称图片名称图片名称{{item}}</p>
 		</div>
 	</div>
@@ -9,7 +9,7 @@
 
 <script lang="ts">
 	import { defineComponent, ref } from 'vue'
-	import { Image as VanImage} from 'vant'
+	import { Image as VanImage, ImagePreview} from 'vant'
 	export default defineComponent({
 	  name: 'Image',
 		components: {
@@ -24,7 +24,17 @@
 			}
 		},
 		setup() {
+			const preview = (src) => {
+				ImagePreview({
+					images: [src], 
+					closeable: true,
+					showIndex: false
+				})
+			}
 			
+			return {
+				preview
+			}
 		}
 	})
 </script>

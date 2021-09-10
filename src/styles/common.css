@@ -57,10 +57,17 @@ table {
   align-items: center;
   justify-content: space-between;
 }
+
 /* 定制主题 */
 :root {
 	--my-border-color: #4E6EF2;
 	--van-tabs-bottom-bar-color: #4E6EF2;
 	--van-button-primary-background-color: #4E6EF2;
 	--van-button-primary-border-color: #4E6EF2;
+}
+/* 弹窗视频UI优化 */
+.van-popup--center {
+	line-height: 0;
+	overflow: hidden;
+	background: transparent;
 }
