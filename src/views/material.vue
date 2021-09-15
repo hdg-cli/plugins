@@ -11,12 +11,7 @@
 		        finished-text="没有更多了"
 		        @load="onLoad"
 		      >
-						<!-- 视频 -->
-						<Video v-if="item.value == 'video'" :list="list"></Video>
-						<!-- 图片 -->
-						<Image v-else-if="item.value == 'image'" :list="list"></Image>
-						<!-- 文件 -->
-						<File v-else :list="list"></File>
+						<component :is="currentTabComponent" :list="list"></component>
 		      </van-list>
 		    </van-pull-refresh>
 		  </van-tab>
@@ -25,7 +20,7 @@
 </template>
 
 <script lang="ts">
-	import { defineComponent, ref, onMounted, nextTick } from 'vue'
+	import { defineComponent, ref, onMounted, nextTick, computed } from 'vue'
 	import { Tab, Tabs, List, PullRefresh } from 'vant'
 	import Search from '@/components/Search.vue'
 	import Video from '@/components/Video.vue'
@@ -53,7 +48,18 @@
 			const refreshing = ref(false)
 			const searchVal = ref('')
 			const active = ref(0)
+			let currentTabComponent = ref('')
 			const options = ref([{label: '视频', value: 'video'}, {label: '图片', value: 'image'}, {label: '文件', value: 'file'}])
+			
+			currentTabComponent = computed(() => {
+				if(active.value == 0) {
+					return 'Video'
+				} else if(active.value == 1) {
+					return 'Image'
+				} else {
+					return 'File'
+				}
+			})
 			
 			const onLoad = () => {
 				setTimeout(() => {
@@ -101,6 +107,7 @@
 				onRefresh,
 				refreshing,
 				active,
+				currentTabComponent,
 				options,
 				onSearch
 			};

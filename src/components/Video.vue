@@ -22,8 +22,8 @@
 		<!-- 视频播放器 -->
 		<van-popup 
 			v-model:show="show" 
-			safe-area-inset-bottom="true" 
-			closeable="true" 
+			safe-area-inset-bottom
+			closeable
 			teleport="body"
 			@close="hidePlayer">
 			<video id="video" controls src="https://da-library.oss-cn-shenzhen.aliyuncs.com/b97e4688680949f4a11390bbd9eac0fa.mp4"></video>
