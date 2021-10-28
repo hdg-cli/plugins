@@ -2,6 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 import styleImport from 'vite-plugin-style-import'
+import legacy from '@vitejs/plugin-legacy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,7 +17,17 @@ export default defineConfig({
 				},
 			],
 		}),
+		legacy({ // 解决浏览器兼容
+			targets: ['defaults', 'not IE 11']
+		})
 	],
+	css: {
+		postcss: {
+			plugins: [
+				require('autoprefixer')
+			]
+		}
+	},
 	base: './',
 	resolve: {
 		alias: {
@@ -24,15 +35,19 @@ export default defineConfig({
 			'@': path.resolve(__dirname, 'src')
 		}
 	},
-	build: {
+	build: { // 生产环境打包配置
 		outDir: 'dist',
 	},
-	server: {
+	server: { // vite开发服务器配置
 		https: false,
-		port: '8080',
+		port: 8080,
 		open: true,
 		proxy: {
-			
+			'/api': {
+				target: 'http://xxx.xxx.xx',
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api/, '')
+			}
 		}
 	},
 	// 引入第三方的配置

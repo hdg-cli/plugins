@@ -10,6 +10,24 @@ const state = () => ({
 
 const getters = {}
 
+const mutations = {
+	SET_TOKEN (state: any, token: string) {
+		state.token = token
+	},
+	
+	SET_NAME (state: any, name: string) {
+		state.name = name
+	},
+	
+	SET_AVATAR (state: any, avatar: string) {
+		state.avatar = avatar
+	},
+	
+	SET_BIND_STATUS (state: any, bindStatus: string) {
+		state.bindStatus = bindStatus
+	}
+}
+
 const actions = {
 	async GetUserInfo ({ state: any, commit }) {
 		const userInfo: any = await getUserInfo()
@@ -30,24 +48,6 @@ const actions = {
 			removeToken()
 			resolve(1)
 		})
-	}
-}
-
-const mutations = {
-	SET_TOKEN (state: any, token: string) {
-		state.token = token
-	},
-	
-	SET_NAME (state: any, name: string) {
-		state.name = name
-	},
-	
-	SET_AVATAR (state: any, avatar: string) {
-		state.avatar = avatar
-	},
-	
-	SET_BIND_STATUS (state: any, bindStatus: string) {
-		state.bindStatus = bindStatus
 	}
 }
 

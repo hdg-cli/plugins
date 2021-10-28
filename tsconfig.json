@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext", // 编译的目标是什么版本的
-    "module": "esnext", // 指定生成那个模块系统代码
+    "module": "esnext", // 指定生成哪个模块系统代码
     "moduleResolution": "node",
     "strict": true,
     "jsx": "preserve",
