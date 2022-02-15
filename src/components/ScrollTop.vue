@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-	import { ref, onMounted } from 'vue'
+	import { ref, onMounted, onBeforeUnmount } from 'vue'
 	import { Icon as vanIcon } from 'vant'
 	
 	const showBack = ref(false)
@@ -12,19 +12,36 @@
 	const timer = ref(null)
 	
 	onMounted(() => {
-		window.addEventListener('scroll', () => {
-			const winHeight = window.innerHeight
-			scrollNum.value = document.documentElement.scrollTop
-			if (scrollNum.value > winHeight) {
-				showBack.value = true
-			} else {
-				showBack.value = false
-			}
-		})
+		window.addEventListener('scroll', bodyScroll)
+	})
+	
+	function bodyScroll() {
+		const winHeight = window.innerHeight
+		scrollNum.value = document.documentElement.scrollTop
+		if (scrollNum.value > winHeight) {
+			showBack.value = true
+		} else {
+			showBack.value = false
+		}
+		console.log(scrollNum.value)
+	}
+	
+	onBeforeUnmount(() => {
+		// 取消定时器
+		if (timer.value) {
+			clearInterval(timer.value)
+			timer.value = null
+		}
+		
+		// 取消滚动监听
+		window.removeEventListener('scroll', bodyScroll)
 	})
 	
 	function backTop() {
-		if (timer.value) timer.value = null
+		if (timer.value) {
+			clearInterval(timer.value)
+			timer.value = null
+		}
 		
 		let count = 200
 		timer.value = setInterval(() => {
