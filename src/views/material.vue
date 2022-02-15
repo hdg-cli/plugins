@@ -100,17 +100,18 @@
 	
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 	.page {
 		padding-top: calc(36px + .6rem);
+		:deep(.van-tab--active) {
+			font-weight: bold;
+		}
+		:deep(.van-tabs__line) {
+			background-color: #4E6EF2;
+		}
+		:deep(.van-tabs__wrap) {
+			border-bottom: 1px solid #eee;
+		}
 	}
-	:deep(.van-tab--active) {
-		font-weight: bold;
-	}
-	:deep(.van-tabs__line) {
-		background-color: #4E6EF2;
-	}
-	:deep(.van-tabs__wrap) {
-		border-bottom: 1px solid #eee;
-	}
+	
 </style>
