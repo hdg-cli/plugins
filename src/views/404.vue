@@ -7,27 +7,16 @@
 	</div>
 </template>
 
-<script lang="ts">
-	import { defineComponent, ref } from 'vue'
-	import { Button } from 'vant'
+<script setup lang="ts">
+	// 顶层的绑定会被暴露给模板
+	import { Button as vanButton } from 'vant'
 	import { useRouter } from 'vue-router'
-	export default defineComponent({
-		name: '404',
-		components: {
-			[Button.name]: Button
-		},
-		setup() {
-			const router = useRouter()
-			
-			function goTo (path: string):void {
-				router.push(path)
-			}
-			
-			return {
-				goTo
-			}
-		}
-	})
+	
+	const router = useRouter()
+	
+	function goTo (path: string):void {
+		router.push(path)
+	}
 </script>
 
 <style scoped>

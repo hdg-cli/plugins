@@ -10,78 +10,69 @@
 		</ul>
 	</div>
 </template>
-<script lang="ts">
-	import { defineComponent, ref, onMounted, nextTick, computed  } from 'vue'
+<script setup lang="ts">
+	import { ref, onMounted, nextTick, computed  } from 'vue'
 	import QRCode from 'qrcode'
-	import {useStore} from 'vuex'
+	import { useStore } from 'vuex'
 	import { useRouter } from 'vue-router'
 	import {
 		getReq
 	} from '@/api/login'
-	export default defineComponent({
-		name: 'Login',
-		setup() {
-			const url = ref('')
-			const qrDom = ref(null)
-			let name = ref('')
-			const store = useStore()
-			
-			onMounted(() => {
-				// 获取用户信息
-				store.dispatch('user/GetUserInfo')
-				
-			})
-			
-			nextTick(() => {
-				getUrl()
-				getReq({name: 2})
-			})
-			
-			
-			
-			name = computed(() => {
-				return store.state.user.name
-			})
-			
-			const getUrl = () => {
-				url.value = 'https://www.baidu.com'
-				qrcode(url)
-			}
-			
-			const qrcode = (url: any) =>{
-				let oQrcode = document.getElementById('qrcode')
-				oQrcode!.innerHTML = ''
-				QRCode.toCanvas(oQrcode, 
-					url.value,
-					 {
-						 errorCorrectionLevel: 'H', //容错率 L, M, Q, H
-						 margin: 2,
-						 width: 180,
-						 color: {
-							 dark: '#000000ff', // 颜色
-							 light: '#ffffff', // 亮度
-						 }
-					 },
-					 (error)  => {
-						 if(error) console.log(error)
-						 console.log('登录二维码生成成功')
-					 }
-				)
-			}
-			
-			const router = useRouter()
-			const goPage = (path: string) => {
-				router.push(path)
-			}
-			
-			return {
-				url,
-				qrDom,
-				name,
-				goPage
-			}
-		}
+	
+	// ref 赋予原始数据类型响应式特性
+	const url: string = ref('')
+	const qrDom: any = ref(null)
+	const name: string = ref('')
+	const store: any = useStore()
+	
+	onMounted(() => {
+		// 获取用户信息
+		store.dispatch('user/GetUserInfo')
+		
 	})
+	
+	nextTick(() => {
+		getUrl()
+		getReq({name: 2})
+	})
+	
+	
+	
+	name.value = computed(() => {
+		return store.state.user.name
+	})
+	
+	const getUrl = () => {
+		url.value = 'https://www.baidu.com'
+		qrcode(url)
+	}
+	
+	const qrcode = (url: any) =>{
+		let oQrcode = document.getElementById('qrcode')
+		oQrcode!.innerHTML = ''
+		QRCode.toCanvas(oQrcode, 
+			url.value,
+			 {
+				 errorCorrectionLevel: 'H', //容错率 L, M, Q, H
+				 margin: 2,
+				 width: 180,
+				 color: {
+					 dark: '#000000ff', // 颜色
+					 light: '#ffffff', // 亮度
+				 }
+			 },
+			 (error)  => {
+				 if(error) console.log(error)
+				 console.log('登录二维码生成成功')
+			 }
+		)
+	}
+	
+	const router = useRouter()
+	const goPage = (path: string) => {
+		router.push(path)
+	}
+			
 </script>
 
 <style scoped>

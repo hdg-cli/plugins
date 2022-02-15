@@ -7,36 +7,26 @@
 	</div>
 </template>
 
-<script lang="ts">
-	import { defineComponent, ref } from 'vue'
-	import { Image as VanImage, ImagePreview} from 'vant'
-	export default defineComponent({
-	  name: 'Image',
-		components: {
-			[VanImage.name]: VanImage
-		},
-		props: {
-			list: {
-				type: Array,
-				default: function() {
-					return []
-				}
-			}
-		},
-		setup() {
-			const preview = (src) => {
-				ImagePreview({
-					images: [src], 
-					closeable: true,
-					showIndex: false
-				})
-			}
-			
-			return {
-				preview
-			}
+<script setup lang="ts">
+	import { ref } from 'vue'
+	import { Image as VanImage, ImagePreview } from 'vant'
+	
+	// 使用 defineProps 声明 props
+	const props = defineProps({
+		list: {
+			type: Array,
+			default: () => []
 		}
 	})
+	
+	const preview = (src) => {
+		ImagePreview({
+			images: [src], 
+			closeable: true,
+			showIndex: false
+		})
+	}
+	
 </script>
 
 <style scoped>

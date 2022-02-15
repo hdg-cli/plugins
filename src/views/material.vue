@@ -19,9 +19,9 @@
 	</div>
 </template>
 
-<script lang="ts">
-	import { defineComponent, ref, onMounted, nextTick, computed } from 'vue'
-	import { Tab, Tabs, List, PullRefresh } from 'vant'
+<script setup lang="ts">
+	import { ref, reactive, onMounted, nextTick, computed } from 'vue'
+	import { Tab as vanTab, Tabs as vanTabs, List as vanList, PullRefresh as vanPullRefresh } from 'vant'
 	import Search from '@/components/Search.vue'
 	import Video from '@/components/Video.vue'
 	import Image from '@/components/Image.vue'
@@ -29,90 +29,70 @@
 	import {
 		getReq
 	} from '@/api/login'
-	export default defineComponent({
-	  name: 'Material',
-	  components: {
-			[Tab.name]: Tab,
-			[Tabs.name]: Tabs,
-			[List.name]: List,
-			[PullRefresh.name]: PullRefresh,
-			Search,
-			Video,
-			Image,
-			File
-	  },
-		setup() {
-			const list = ref([1, 2, 3])
-			const loading = ref(false)
-			const finished = ref(false)
-			const refreshing = ref(false)
-			const searchVal = ref('')
-			const active = ref(0)
-			let currentTabComponent = ref('')
-			const options = ref([{label: '视频', value: 'video'}, {label: '图片', value: 'image'}, {label: '文件', value: 'file'}])
-			
-			currentTabComponent = computed(() => {
-				if(active.value == 0) {
-					return 'Video'
-				} else if(active.value == 1) {
-					return 'Image'
-				} else {
-					return 'File'
-				}
-			})
-			
-			const onLoad = () => {
-				setTimeout(() => {
-					if (refreshing.value) {
-						list.value = []
-						refreshing.value = false
-					}
 	
-					for (let i = 0; i < 10; i++) {
-						list.value.push(list.value.length + 1)
-					}
-					loading.value = false
-					
-					if (list.value.length >= 40) {
-						finished.value = true
-					}
-				}, 1000)
-			}
+	// ref 赋予原始数据类型响应式特性
+	// reactive 赋予对象响应式特性
+	let list = ref([])
+	const loading = ref(false)
+	const finished = ref(false)
+	const refreshing = ref(false)
+	const searchVal = ref('')
+	const active = ref(0)
+	let currentTabComponent = ref(null)
 	
-			const onRefresh = () => {
-				// 清空列表数据
-				finished.value = false
+	// 不需要响应的常量，可直接渲染
+	const options = [{label: '视频', value: 'video'}, {label: '图片', value: 'image'}, {label: '文件', value: 'file'}]
 	
-				// 重新加载数据
-				// 将 loading 设置为 true，表示处于加载状态
-				loading.value = true
-				onLoad()
-			}
-			
-			
-			onMounted(() => {
-				getReq({name: 22})
-			})
-			
-			const onSearch = (val: string) => {
-				searchVal.value = val
-				alert(val)
-			}
-			
-			return {
-				list,
-				onLoad,
-				loading,
-				finished,
-				onRefresh,
-				refreshing,
-				active,
-				currentTabComponent,
-				options,
-				onSearch
-			};
+	currentTabComponent = computed(() => {
+		list.value = []
+		if(active.value == 0) {
+			return Video
+		} else if(active.value == 1) {
+			return Image
+		} else {
+			return File
 		}
 	})
+	
+	const onLoad = () => {
+		setTimeout(() => {
+			if (refreshing.value) {
+				list.value = []
+				refreshing.value = false
+			}
+
+			for (let i = 0; i < 10; i++) {
+				list.value.push(list.value.length + 1)
+			}
+			loading.value = false
+			
+			if (list.value.length >= 40) {
+				finished.value = true
+			}
+			console.log(list.value)
+		}, 1000)
+	}
+
+	const onRefresh = () => {
+		// 清空列表数据
+		finished.value = false
+
+		// 重新加载数据
+		// 将 loading 设置为 true，表示处于加载状态
+		loading.value = true
+		onLoad()
+	}
+	
+	
+	onMounted(() => {
+		getReq({name: 22})
+	})
+	
+	const onSearch = (val: string) => {
+		searchVal.value = val
+		alert(val)
+	}
+	
 </script>
 
 <style scoped>

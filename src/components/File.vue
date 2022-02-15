@@ -11,26 +11,15 @@
 	</div>
 </template>
 
-<script lang="ts">
-	import { defineComponent, ref } from 'vue'
-	import { Col, Row, Button} from 'vant'
-	export default defineComponent({
-	  name: 'File',
-		components: {
-			[Col.name]: Col,
-			[Row.name]: Row,
-			[Button.name]: Button,
-		},
-		props: {
-			list: {
-				type: Array,
-				default: function() {
-					return []
-				}
-			}
-		},
-		setup() {
-			
+<script setup lang="ts">
+	import { ref } from 'vue'
+	import { Col as vanCol, Row as vanRow, Button as vanButton} from 'vant'
+	
+	// 使用 defineProps 声明 props
+	const props = defineProps({
+		list: {
+			type: Array,
+			default: () => []
 		}
 	})
 </script>

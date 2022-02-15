@@ -14,13 +14,6 @@ const routes = [
 		component: Login
 	},
 	{
-		path: '/404',
-		name: '404',
-		meta: { title: "404", keepAlive: false, requireAuth: false },
-		hidden: true,
-		component: () => import('@/views/404.vue') // 懒加载
-	},
-	{
 		path: '/material',
 		name: 'Material',
 		meta: { title: "素材页", keepAlive: false, requireAuth: true },
@@ -41,6 +34,18 @@ const routes = [
 		hidden: true,
 		component: () => import('@/views/words.vue') // 懒加载
 	},
+	{
+		path: '/404',
+		name: '404',
+		meta: { title: "404", keepAlive: false, requireAuth: false },
+		hidden: true,
+		component: () => import('@/views/404.vue') // 懒加载
+	},
+	{ 
+		path: "/:pathMatch(.*)*", // 匹配所有路径  vue2使用*   vue3使用/:pathMatch(.*)*或/:pathMatch(.*)或/:catchAll(.*)
+		redirect: "/404", 
+		hidden: true 
+	}
 ]
 
 const router = createRouter({

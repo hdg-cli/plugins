@@ -31,52 +31,35 @@
 	</div>
 </template>
 
-<script lang="ts">
-	import { defineComponent, ref, nextTick } from 'vue'
-	import { Col, Row, Image as VanImage, Button, Icon, Popup } from 'vant'
-	export default defineComponent({
-	  name: 'Video',
-		components: {
-			[Col.name]: Col,
-			[Row.name]: Row,
-			[VanImage.name]: VanImage,
-			[Button.name]: Button,
-			[Icon.name]: Icon,
-			[Popup.name]: Popup
-		},
-		props: {
-			list: {
-				type: Array,
-				default: function() {
-					return []
-				}
-			}
-		},
-		setup() {
-			let show = ref(false)
-			
-			const showPlayer = () => {
-				show.value = !show.value
-				nextTick(() => {
-					const video: any = document.getElementById('video')
-					video.play()
-				})
-			}
-			
-			const hidePlayer = () => {
-				nextTick(() => {
-					const video: any = document.getElementById('video')
-					video.pause()
-				})
-			}
-			
-			return {
-				show,
-				showPlayer,
-				hidePlayer
-			}
+<script setup lang="ts">
+	import { ref, nextTick } from 'vue'
+	import { Col as vanCol, Row as vanRow, Image as vanImage, Button as vanButton, Icon as vanIcon, Popup as vanPopup } from 'vant'
+	
+	// 使用 defineProps 声明 props
+	const props = defineProps({
+		list: {
+			type: Array,
+			default: () => []
 		}
 	})
+	
+	const show = ref(false)
+	
+	const showPlayer = () => {
+		show.value = !show.value
+		nextTick(() => {
+			const video: any = document.getElementById('video')
+			video.play()
+		})
+	}
+	
+	const hidePlayer = () => {
+		nextTick(() => {
+			const video: any = document.getElementById('video')
+			video.pause()
+		})
+	}
+			
 </script>
 
 <style scoped>
