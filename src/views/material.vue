@@ -16,35 +16,39 @@
 		    </van-pull-refresh>
 		  </van-tab>
 		</van-tabs>
+		<!-- 回到顶部 -->
+		<ScrollTop></ScrollTop>
 	</div>
 </template>
 
 <script setup lang="ts">
 	import { ref, reactive, onMounted, nextTick, computed } from 'vue'
-	import { Tab as vanTab, Tabs as vanTabs, List as vanList, PullRefresh as vanPullRefresh } from 'vant'
+	import { Tab as vanTab, Tabs as vanTabs, List as vanList, PullRefresh as vanPullRefresh, Icon as vanIcon } from 'vant'
 	import Search from '@/components/Search.vue'
 	import Video from '@/components/Video.vue'
 	import Image from '@/components/Image.vue'
 	import File from '@/components/File.vue'
+	import ScrollTop from '@/components/ScrollTop.vue'
 	import {
 		getReq
 	} from '@/api/login'
 	
 	// ref 赋予原始数据类型响应式特性
 	// reactive 赋予对象响应式特性
-	let list = ref([])
-	const loading = ref(false)
-	const finished = ref(false)
-	const refreshing = ref(false)
-	const searchVal = ref('')
-	const active = ref(0)
-	let currentTabComponent = ref(null)
+	let list = ref([]) // 数据列表
+	const loading = ref(false) // 加载中
+	const finished = ref(false) // 加载完成
+	const refreshing = ref(false) // 刷新状态
+	const searchVal = ref('') // 搜索关键词
+	const active = ref(0) // 当前tab
+	let currentTabComponent = ref(null) // 当前组件
 	
 	// 不需要响应的常量，可直接渲染
 	const options = [{label: '视频', value: 'video'}, {label: '图片', value: 'image'}, {label: '文件', value: 'file'}]
 	
 	currentTabComponent = computed(() => {
 		list.value = []
+		finished.value = false
 		if(active.value == 0) {
 			return Video
 		} else if(active.value == 1) {
@@ -86,6 +90,7 @@
 	
 	onMounted(() => {
 		getReq({name: 22})
+		
 	})
 	
 	const onSearch = (val: string) => {
