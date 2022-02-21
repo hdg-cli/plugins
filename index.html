@@ -1,23 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="format-detection" content="telephone=no">
-    <meta name="full-screen" content="true" />
-    <meta name="screen-orientation" content="portrait" />
-    <meta name="x5-fullscreen" content="true" />
-    <meta name="360-fullscreen" content="true" />
-    <title>Vite App</title>
-		<script type="text/javascript">
-			(function(designWidth,maxWidth){const doc=document,win=window;const docEl=doc.documentElement;let tid;let rootItem,rootStyle;function refreshRem(){let width=docEl.getBoundingClientRect().width;if(!maxWidth){maxWidth=750}if(width>maxWidth){width=maxWidth}const rem=width*100/designWidth;rootStyle="html{font-size:"+rem+'px !important}';rootItem=document.getElementById('rootsize')||document.createElement("style");if(!document.getElementById('rootsize')){document.getElementsByTagName("head")[0].appendChild(rootItem);rootItem.id='rootsize'}if(rootItem.styleSheet){rootItem.styleSheet.disabled||(rootItem.styleSheet.cssText=rootStyle)}else{try{rootItem.innerHTML=rootStyle}catch(f){rootItem.innerText=rootStyle}}docEl.style.fontSize=rem+"px"}refreshRem();win.addEventListener("resize",function(){clearTimeout(tid);tid=setTimeout(refreshRem,300)},false);win.addEventListener("pageshow",function(e){if(e.persisted){clearTimeout(tid);tid=setTimeout(refreshRem,300)}},false);if(doc.readyState==="complete"){doc.body.style.fontSize="16px"}else{doc.addEventListener("DOMContentLoaded",function(e){doc.body.style.fontSize="16px"},false)}})(750,750)
-		</script>
-  </head>
-  <body ontouchstart="">
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+        />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="full-screen" content="true" />
+        <meta name="screen-orientation" content="portrait" />
+        <meta name="x5-fullscreen" content="true" />
+        <meta name="360-fullscreen" content="true" />
+        <title>Vite App</title>
+        <script type="text/javascript">
+            ;(function (designWidth, maxWidth) {
+                const doc = document,
+                    win = window
+                const docEl = doc.documentElement
+                let tid
+                let rootItem, rootStyle
+                function refreshRem() {
+                    let width = docEl.getBoundingClientRect().width
+                    if (!maxWidth) {
+                        maxWidth = 750
+                    }
+                    if (width > maxWidth) {
+                        width = maxWidth
+                    }
+                    const rem = (width * 100) / designWidth
+                    rootStyle = 'html{font-size:' + rem + 'px !important}'
+                    rootItem = document.getElementById('rootsize') || document.createElement('style')
+                    if (!document.getElementById('rootsize')) {
+                        document.getElementsByTagName('head')[0].appendChild(rootItem)
+                        rootItem.id = 'rootsize'
+                    }
+                    if (rootItem.styleSheet) {
+                        rootItem.styleSheet.disabled || (rootItem.styleSheet.cssText = rootStyle)
+                    } else {
+                        try {
+                            rootItem.innerHTML = rootStyle
+                        } catch (f) {
+                            rootItem.innerText = rootStyle
+                        }
+                    }
+                    docEl.style.fontSize = rem + 'px'
+                }
+                refreshRem()
+                win.addEventListener(
+                    'resize',
+                    function () {
+                        clearTimeout(tid)
+                        tid = setTimeout(refreshRem, 300)
+                    },
+                    false
+                )
+                win.addEventListener(
+                    'pageshow',
+                    function (e) {
+                        if (e.persisted) {
+                            clearTimeout(tid)
+                            tid = setTimeout(refreshRem, 300)
+                        }
+                    },
+                    false
+                )
+                if (doc.readyState === 'complete') {
+                    doc.body.style.fontSize = '16px'
+                } else {
+                    doc.addEventListener(
+                        'DOMContentLoaded',
+                        function (e) {
+                            doc.body.style.fontSize = '16px'
+                        },
+                        false
+                    )
+                }
+            })(750, 750)
+        </script>
+    </head>
+    <body ontouchstart="">
+        <div id="app"></div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>
