@@ -21,7 +21,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { List as vanList, PullRefresh as vanPullRefresh, Button as vanButton } from 'vant'
 import Search from '@/components/Search.vue'
 import ScrollTop from '@/components/ScrollTop.vue'

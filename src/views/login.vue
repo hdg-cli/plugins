@@ -11,17 +11,14 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted, nextTick, computed } from 'vue'
 import QRCode from 'qrcode'
-import { useStore } from 'vuex'
-import { useRouter } from 'vue-router'
 import { getReq } from '@/api/login'
 
 // ref 赋予原始数据类型响应式特性
-const url: any = ref('')
-const qrDom: any = ref(null)
-const name: any = ref('')
-const store: any = useStore()
+const url = ref('')
+const qrDom = ref(null)
+const store = useStore()
+const router = useRouter()
 
 onMounted(() => {
     // 获取用户信息
@@ -33,7 +30,7 @@ nextTick(() => {
     getReq({ name: 2 })
 })
 
-name.value = computed(() => {
+const name = computed(() => {
     return store.state.user.name
 })
 
@@ -64,7 +61,6 @@ const qrcode = (url: any) => {
     )
 }
 
-const router = useRouter()
 const goPage = (path: string) => {
     router.push(path)
 }

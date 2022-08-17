@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, nextTick, computed } from 'vue'
 import { Tab as vanTab, Tabs as vanTabs, List as vanList, PullRefresh as vanPullRefresh, Icon as vanIcon } from 'vant'
 import Search from '@/components/Search.vue'
 import Video from '@/components/Video.vue'
