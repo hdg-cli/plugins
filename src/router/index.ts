@@ -35,6 +35,13 @@ const routes = [
 		component: () => import('@/views/words.vue') // 懒加载
 	},
 	{
+		path: '/luck',
+		name: 'Luck',
+		meta: { title: "九宫格抽奖", keepAlive: false, requireAuth: false },
+		hidden: true,
+		component: () => import('@/views/luck.vue') // 懒加载
+	},
+	{
 		path: '/404',
 		name: '404',
 		meta: { title: "404", keepAlive: false, requireAuth: false },

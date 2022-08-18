@@ -3,6 +3,7 @@
         <canvas class="canvas" id="qrcode" ref="qrDom"></canvas>
         <p>{{ name }} 微信扫一扫登录</p>
         <ul style="margin: 20px">
+            <li style="margin-bottom: 15px; text-decoration: underline" @click="goPage('luck')">九宫格抽奖</li>
             <li style="margin-bottom: 15px; text-decoration: underline" @click="goPage('material')">素材页</li>
             <li style="margin-bottom: 15px; text-decoration: underline" @click="goPage('questions')">问答页</li>
             <li style="margin-bottom: 15px; text-decoration: underline" @click="goPage('words')">话术页</li>
