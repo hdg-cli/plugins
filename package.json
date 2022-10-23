@@ -1,11 +1,15 @@
 {
     "name": "plugins",
-    "version": "0.0.0",
+    "description": "",
+    "version": "1.0.0",
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build",
         "stage": "vite build --mode stage"
     },
+    "keywords": [],
+    "author": "huangdg",
+    "license": "ISC",
     "dependencies": {
         "axios": "^0.21.4",
         "js-md5": "^0.7.3",
